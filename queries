@@ -1,0 +1,79 @@
+#!/bin/bash
+
+echo "1.Find the details of male members from the data file:"
+grep -w "Male" data.text
+
+echo ""
+echo ""
+echo "-----------------------------"
+
+
+echo "2.Find the details of members whose name starts with either 'A' or 'K'"
+grep -P '(?<=\d,)[AK]' data.text
+
+echo ""
+echo ""
+echo "-----------------------------"
+
+
+echo "3.Write a command to find only phone numbers from the data file"
+grep -Pwo "...-...-...." data.text
+
+echo ""
+echo ""
+echo "-----------------------------"
+
+
+echo "4.Store the data of each column to a new file and name the file as per the column name"
+echo "id file:"
+cut -d ',' -f1 data.text > id.text
+echo "first_name file:"
+cut -d ',' -f2 data.text > first_name.text
+echo "last_name file:"
+cut -d ',' -f3 data.text > last_name.text
+echo "email file:"
+cut -d ',' -f4 data.text > email.text
+echo "gender file:"
+cut -d ',' -f5 data.text > gender.text
+echo "ip_address file:"
+cut -d ',' -f6 data.text > ip_address.text
+echo "phone file:"
+cut -d ',' -f7 data.text > phone.text
+
+echo ""
+echo ""
+echo "-----------------------------"
+
+echo "5.Write a command to count the total number of members in the file"
+grep -c '[0-201].*' data.text
+
+echo ""
+echo ""
+echo "-----------------------------"
+
+
+echo "6.Replace all 'cl.com' string with '.org'"
+sed 's/.com/.org/' data.text
+
+echo ""
+echo ""
+echo "-----------------------------"
+
+
+echo "7.Parenthesize first character of the first and last name of each member"
+perl -pe "s/([A-Z])(?=[a-z]+,[A-Z])/(\1)/" data.text | perl -pe "s/([A-Z])(?=[a-z]+,[a-z])/(\1)/"
+echo ""
+echo ""
+echo "-----------------------------"
+
+
+echo "8.Write a command to delete a particular line (say the 10th line) from a file"
+sed '10d' data.text
+echo ""
+echo ""
+echo "-----------------------------"
+
+
+echo "9.Number each line of a file"
+cat -n data.text > numberedlines.text
+cat numberedlines.text
